@@ -1,0 +1,46 @@
+.bg-nav
+{
+    background: #ff0084;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #33001b, #ff0084);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #33001b, #ff0084); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+.bg-result {
+    height:100vh;
+    background-image: url("https://media.istockphoto.com/photos/doctor-with-text-space-on-black-background-picture-id1180867892?k=6&m=1180867892&s=612x612&w=0&h=VZ3uHOh-V2kek9aoPd8B_Z7Yq9btrWMinveR2bu-mRk=");
+    background-repeat: no-repeat;
+     background-size: 100% 100%;
+}
+.mt-50{
+    margin-top:100px;
+}
+.mt-25{
+    margin-top:50px;
+}
+.ml-120
+{
+    margin-left: 120px;
+
+}
+.ml-100
+{
+    margin-left: 100px;
+
+}
+.m-6
+{
+    margin-left:60px;
+}
+.bg{
+     background: rgb(0, 0, 0); /* Fallback color */
+  background: rgba(0, 0, 0, 0.5); /* Black background with 0.5 opacity */
+  color: #f1f1f1;
+}
+.m-8
+{
+    margin-left:80px;
+}
+.m-9
+{
+    margin-left:90px;
+}

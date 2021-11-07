@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel= "stylesheet" href= "{{ url_for('static',filename='css/style.css') }}">
+    <title>Predict</title>
+  </head>
+  <body class="bg-nav">
+   <div class="bg d-flex flex-column flex-md-row align-items-center pb-2 mb-4">
+    <a href="/" class="d-flex align-items-center text-decoration-none text-light">
+       <span class="fs-4">Heart Disease Prediction System </span>
+    </a>
+
+      <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
+        {% if 'name' in session %}
+             <div class="me-3 py-2 text-decoration-none text-light">Welcome {{ session['name'] }} !!!</div>
+         {% endif %}
+       <a class="me-3 py-2  text-decoration-none text-light" href="/">Home</a>
+        <a class="me-3 py-2  text-decoration-none text-light" href="/login">Login</a>
+        <a class="me-3 py-2  text-decoration-none text-light" href="/predict">Predict</a>
+        <a class="me-3 py-2 text-decoration-none text-light" href="/register">Register</a>
+        <a class="me-3 py-2 text-decoration-none text-light" href="/logout">Logout</a>
+
+      </nav>
+    </div>
+    <div class="card bg">
+            <div class="card-body">
+              <form method="post" action="/predict_validation">
+                <div class="row">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-8"> <h4> Enter the Diagnosis Test values </h4></div>
+                </div>
+                <div class="row">
+                     <div class="col-md-2 mt-5" >
+                        <label>Age(in years)</label>
+                    </div>
+                    <div class="col-md-4 mt-5">
+                        <input type="text" class="form-control" placeholder="Age" name="age" id="age" required>
+                    </div>
+                    <div class="col-md-2 mt-5" style="text-align: end">
+                        <label>Sex(Male/Female)</label>
+                    </div>
+                    <div class="col-md-2 mt-5">
+                            <div class="form-check">
+                            <input class="form-check-input" type="radio" name="sex" id="male" value="male">
+                            <label class="form-check-label" for="male">
+                            Male
+                            </label>
+                            </div>
+                    </div>
+                    <div class="col-md-2 mt-5">
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="sex" id="female" value="female">
+                            <label class="form-check-label" for="female">
+                            Female
+                            </label>
+                            </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="mt-2 col-md-2" >Chest Pain Type</div>
+                    <div class="mt-2 col-md-4">
+                        <select class="custom-select form-control" id="chestpain" name="chestpain">
+                                <option selected>Select from options</option>
+                                <option value="0">Typical angina</option>
+                                <option value="1">Nontypical angina</option>
+                                <option value="2">Non-anginal</option>
+                                <option value="3">Asymtotic</option>
+                        </select>
+                    </div>
+                    <div class="mt-2 col-md-3" style="text-align: end">Resting Blood Pressure (in mm Hg)</div>
+                    <div class="mt-2 col-md-3"><input type="text" class="form-control" placeholder="Blood Pressure" id="bp" name="bp" required></div>
+
+                </div>
+                 <div class="row">
+                     <div class="mt-2 col-md-3" >Cholestrol(serum cholestrol in mg/dl)</div>
+                     <div class="mt-2 col-md-3"><input type="text" class="form-control" placeholder="Cholestrol" id="cho" name="cho" required></div>
+                     <div class="col-md-2 mt-2" style="text-align: end">
+                        <label>Fasting Blood Sugar>120mg/dl</label>
+                    </div>
+                    <div class="col-md-2 mt-3">
+                            <div class="form-check">
+                            <input class="form-check-input" type="radio" name="sugar" id="true" value="true">
+                            <label class="form-check-label" for="true">
+                            True
+                            </label>
+                            </div>
+                    </div>
+                    <div class="col-md-2 mt-3">
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="sugar" id="false" value="false">
+                            <label class="form-check-label" for="false">
+                            False
+                            </label>
+                            </div>
+                    </div>
+                 </div>
+                  <div class="row">
+                      <div class="mt-2 col-md-2" >Rest Electrocardiographic results</div>
+                    <div class="mt-2 col-md-4">
+                        <select class="custom-select form-control" id="ecg" name="ecg">
+                                <option selected>Select from options</option>
+                                <option value="0">Normal</option>
+                                <option value="1">Having ST-T wave abnormality</option>
+                                <option value="2">Definite left ventricular hypertrophy</option>
+                        </select>
+                    </div>
+                     <div class="mt-2 col-md-3" style="text-align: end">Maximum heart rate received</div>
+                    <div class="mt-2 col-md-3"><input type="text" class="form-control" placeholder="Heart rate" required id="hr" name="hr"></div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-2 mt-2">
+                        <label>Exercise induced angina</label>
+                    </div>
+                    <div class="col-md-2 mt-2">
+                            <div class="form-check">
+                            <input class="form-check-input" type="radio" name="angina" id="yes" value="yes">
+                            <label class="form-check-label" for="yes">
+                            Yes
+                            </label>
+                            </div>
+                    </div>
+                    <div class="col-md-2 mt-2">
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="angina" id="no" value="no">
+                            <label class="form-check-label" for="no">
+                            No
+                            </label>
+                            </div>
+                    </div>
+                     <div class="mt-2 col-md-3" style="text-align: end">ST depression induced by exercise relative to rest</div>
+                     <div class="mt-2 col-md-3"><input type="text" class="form-control" placeholder="ST Depression"  required id="ST" name="ST"></div>
+                  </div>
+                  <div class="row">
+                      <div class="mt-2 col-md-2" >Slope of peak exercise ST segment</div>
+                    <div class="mt-2 col-md-4">
+                        <select class="custom-select form-control" id="slope" name="slope">
+                                <option selected>Select from options</option>
+                                <option value="0">Upsloping</option>
+                                <option value="1">Flat</option>
+                                <option value="2">Downsloping</option>
+                        </select>
+                    </div>
+                      <div class="mt-2 col-md-2" style="text-align: end">Number of major vessels(0-3)coloured by flourosopy</div>
+                    <div class="mt-2 col-md-4">
+                        <select class="custom-select form-control" id="vessels" name="vessels">
+                                <option selected>Select from options</option>
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                        </select>
+                    </div>
+                  </div>
+                  <div class="row">
+                      <div class="mt-2 col-md-2" >Thal</div>
+                    <div class="mt-2 col-md-10">
+                        <select class="custom-select form-control" id="thal" name="thal">
+                                <option selected>Select from options</option>
+                                <option value="0">Fixed</option>
+                                <option value="1">Defect</option>
+                                <option value="2">Reversible Defect</option>
+                        </select>
+                    </div>
+                  </div>
+                  <input type="submit" class="btn bg btn-lg col-md-12 mt-5" value="Submit" style="text-align: center">
+              </form>
+            </div>
+    </div>
+
+
+  </body>
+</html>

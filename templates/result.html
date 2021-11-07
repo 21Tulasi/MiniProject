@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel= "stylesheet" href= "{{ url_for('static',filename='css/style.css') }}">
+    <title>Result</title>
+  </head>
+  <body class="bg-result">
+   <div class="bg d-flex flex-column flex-md-row align-items-center pb-2 mb-4">
+    <a href="/" class="d-flex align-items-center text-decoration-none text-light">
+       <span class="fs-4">Heart Disease Prediction System </span>
+    </a>
+
+      <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
+         {% if 'name' in session %}
+             <div class="me-3 py-2 text-decoration-none text-light">Welcome {{ session['name'] }} !!!</div>
+         {% endif %}
+        <a class="me-3 py-2  text-decoration-none text-light" href="/">Home</a>
+        <a class="me-3 py-2  text-decoration-none text-light" href="/login">Login</a>
+        <a class="me-3 py-2  text-decoration-none text-light" href="/predict">Predict</a>
+        <a class="me-3 py-2 text-decoration-none text-light" href="/register">Register</a>
+        <a class="me-3 py-2 text-decoration-none text-light" href="/logout">Logout</a>
+      </nav>
+    </div>
+           <div class="row">
+               <div class="col-md-8">
+                   <div class="card mt-25 bg">
+            <div class="card-body">
+                <div> {%  with messages = get_flashed_messages() %}
+                      {% if messages %}
+                          {%  for i in messages %}
+                              <h1 class="text-light display-2 mt-1 ml-100" style="font-size:60px">{{ i }}</h1>
+                          {% endfor %}
+                      {% endif %}
+                  {% endwith %}
+                <div class="row">
+                  <div class="col-md-2"></div>
+                    <a class="col-md-3" href="/logout" style="justify-content: end"><input type="button" class="btn bg btn-lg mt-5" value="Logout" style="text-align: center"></a>
+                    <a class="col-md-3"  href="/predict" style="justify-content: end"><input type="button" class="btn bg btn-lg mt-5" value="Predict again" style="text-align: center"></a>
+                    <div class="col-md-3"></div>
+                </div>
+                </div>
+            </div>
+                   </div>
+
+               </div>
+           </div>
+
+
+  </body>
+</html>
